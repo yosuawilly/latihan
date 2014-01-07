@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04 Jan 14 15:05:11 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.server.asset.entity.MaintenanceSchedule" table="maintenance_schedule" schema="public">
+        <id name="idMaintenance" type="java.lang.Integer">
+            <column name="id_maintenance" />
+            <generator class="sequence" >
+                <param name="sequence" >maintenance_schedule_id_maintenance_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="asset" class="com.server.asset.entity.Asset" fetch="select">
+            <column name="id_asset" />
+        </many-to-one>
+        <many-to-one name="statusMaintenance" class="com.server.asset.entity.StatusMaintenance" fetch="select">
+            <column name="id_status" />
+        </many-to-one>
+        <property name="commentStatus" type="string">
+            <column name="comment_status" length="20" />
+        </property>
+        <property name="estimasiWaktu" type="java.lang.Integer">
+            <column name="estimasi_waktu" />
+        </property>
+        <property name="pic" type="string">
+            <column name="pic" length="30" />
+        </property>
+        <property name="tanggalAwal" type="date">
+            <column name="tanggal_awal" length="13" />
+        </property>
+        <property name="tanggalSelesai" type="date">
+            <column name="tanggal_selesai" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

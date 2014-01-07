@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04 Jan 14 15:05:11 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.server.asset.entity.Location" table="location" schema="public">
+        <id name="idLocation" type="int">
+            <column name="id_location" />
+            <generator class="assigned" />
+        </id>
+        <property name="location" type="string">
+            <column name="location" length="30" />
+        </property>
+        <set name="assets" inverse="true">
+            <key>
+                <column name="id_location" />
+            </key>
+            <one-to-many class="com.server.asset.entity.Asset" />
+        </set>
+    </class>
+</hibernate-mapping>

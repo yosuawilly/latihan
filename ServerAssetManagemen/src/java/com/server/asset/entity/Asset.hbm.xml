@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04 Jan 14 15:05:11 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.server.asset.entity.Asset" table="asset" schema="public">
+        <id name="idAsset" type="int">
+            <column name="id_asset" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="location" class="com.server.asset.entity.Location" fetch="select">
+            <column name="id_location" />
+        </many-to-one>
+        <many-to-one name="condition" class="com.server.asset.entity.Condition" fetch="select">
+            <column name="id_condition" />
+        </many-to-one>
+        <many-to-one name="category" class="com.server.asset.entity.Category" fetch="select">
+            <column name="id_category" />
+        </many-to-one>
+        <property name="asset" type="string">
+            <column name="asset" length="30" not-null="true" />
+        </property>
+        <property name="departemen" type="string">
+            <column name="departemen" length="30" />
+        </property>
+        <property name="acquiredDate" type="date">
+            <column name="acquired_date" length="13" />
+        </property>
+        <property name="currentValue" type="java.lang.Double">
+            <column name="current_value" precision="17" scale="17" />
+        </property>
+        <property name="purchasePrice" type="java.lang.Double">
+            <column name="purchase_price" precision="17" scale="17" />
+        </property>
+        <property name="manufacturer" type="string">
+            <column name="manufacturer" length="30" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="30" />
+        </property>
+        <property name="model" type="string">
+            <column name="model" length="30" />
+        </property>
+        <property name="scheduleInterval" type="java.lang.Integer">
+            <column name="schedule_interval" />
+        </property>
+        <property name="estimasiWaktu" type="java.lang.Integer">
+            <column name="estimasi_waktu" />
+        </property>
+        <set name="maintenanceSchedules" inverse="true">
+            <key>
+                <column name="id_asset" />
+            </key>
+            <one-to-many class="com.server.asset.entity.MaintenanceSchedule" />
+        </set>
+    </class>
+</hibernate-mapping>

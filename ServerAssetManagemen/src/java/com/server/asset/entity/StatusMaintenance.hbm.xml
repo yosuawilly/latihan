@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04 Jan 14 15:05:11 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.server.asset.entity.StatusMaintenance" table="status_maintenance" schema="public">
+        <id name="idStatus" type="int">
+            <column name="id_status" />
+            <generator class="assigned" />
+        </id>
+        <property name="status" type="string">
+            <column name="status" length="20" />
+        </property>
+        <set name="maintenanceSchedules" inverse="true">
+            <key>
+                <column name="id_status" />
+            </key>
+            <one-to-many class="com.server.asset.entity.MaintenanceSchedule" />
+        </set>
+    </class>
+</hibernate-mapping>
